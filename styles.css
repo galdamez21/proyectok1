@@ -1,0 +1,367 @@
+/* ═══════════════════════════════════════════════════════════════════
+   K1 VIDEO PIPELINE - STYLES
+   Professional fintech/crypto aesthetic matching k1.sv
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Reset & Base ─── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: 'Inter', sans-serif; 
+  background: #0F051D; 
+  color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+::-webkit-scrollbar-thumb { background: rgba(116,31,245,0.5); border-radius: 99px; }
+
+/* ─── Gradient Backgrounds ─── */
+.gradient-bg {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(116,31,245,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(227,72,255,0.1) 0%, transparent 40%);
+}
+.gradient-text {
+  background: linear-gradient(135deg, #741ff5 0%, #e348ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Gradient Border Effect ─── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #741ff5, #e348ff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ─── Glass Effect ─── */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.glass-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── Logo ─── */
+.logo-k1 {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8E8E8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #0F051D;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(116,31,245,0.3);
+}
+
+/* ─── Primary Button ─── */
+.btn-primary {
+  background: linear-gradient(135deg, #741ff5 0%, #9d5ff8 50%, #e348ff 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(116,31,245,0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(116,31,245,0.5);
+}
+
+/* ─── Secondary Button ─── */
+.btn-secondary {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(116,31,245,0.5);
+}
+
+/* ─── Tab Styles ─── */
+.tab-btn {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #741ff5, #e348ff);
+  transition: width 0.3s ease;
+}
+.tab-btn:hover::after,
+.tab-btn.active::after {
+  width: 100%;
+}
+.tab-btn.active {
+  color: #e348ff;
+}
+
+/* ─── Form Elements ─── */
+input[type="range"] { accent-color: #741ff5; }
+select, textarea {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+select:focus, textarea:focus {
+  border-color: #741ff5;
+  box-shadow: 0 0 0 3px rgba(116,31,245,0.15);
+  outline: none;
+}
+
+/* ─── Chips ─── */
+.chip {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.3s ease;
+}
+.chip:hover {
+  background: rgba(116,31,245,0.1);
+  border-color: rgba(116,31,245,0.3);
+}
+.chip.active {
+  background: linear-gradient(135deg, rgba(116,31,245,0.2) 0%, rgba(227,72,255,0.2) 100%);
+  border-color: #741ff5;
+  color: #e348ff;
+}
+
+/* ─── Option Buttons ─── */
+.opt-btn {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.3s ease;
+}
+.opt-btn:hover {
+  background: rgba(116,31,245,0.1);
+  border-color: rgba(116,31,245,0.3);
+}
+.opt-btn.active {
+  background: linear-gradient(135deg, rgba(116,31,245,0.15) 0%, rgba(227,72,255,0.15) 100%);
+  border-color: #741ff5;
+  color: #e348ff;
+}
+
+/* ─── Region Cards ─── */
+.region-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s ease;
+}
+.region-card:hover {
+  background: rgba(116,31,245,0.08);
+  border-color: rgba(116,31,245,0.3);
+  transform: translateY(-2px);
+}
+.region-card.active {
+  background: linear-gradient(135deg, rgba(116,31,245,0.15) 0%, rgba(227,72,255,0.1) 100%);
+  border-color: #741ff5;
+}
+
+/* ─── Drop Zone ─── */
+.drop-zone {
+  border: 2px dashed rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.01);
+  transition: all 0.3s ease;
+}
+.drop-zone:hover, .drop-zone.over {
+  border-color: #741ff5;
+  background: rgba(116,31,245,0.05);
+}
+
+/* ─── ATM Preview ─── */
+.atm-shell {
+  background: linear-gradient(160deg, #1a1030 0%, #0f0a1f 100%);
+  border: 1px solid rgba(116,31,245,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(116,31,245,0.1);
+}
+.atm-screen {
+  background: linear-gradient(180deg, #12102a 0%, #0a0815 100%);
+  border: 1px solid rgba(116,31,245,0.15);
+}
+
+/* ─── Animations ─── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(116,31,245,0.3); }
+  50% { box-shadow: 0 0 40px rgba(116,31,245,0.5); }
+}
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float { animation: float 3s ease-in-out infinite; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 20s linear infinite; }
+
+/* ─── Toggle Switch ─── */
+.toggle-track {
+  width: 44px;
+  height: 24px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.toggle-track.active { background: linear-gradient(135deg, #741ff5, #e348ff); }
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.toggle-track.active .toggle-thumb { transform: translateX(20px); }
+
+/* ─── Progress Bar ─── */
+.progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #741ff5, #e348ff);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ─── Specs Row ─── */
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.spec-row:last-child { border-bottom: none; }
+
+/* ─── Toast ─── */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, rgba(26,16,48,0.95) 0%, rgba(15,5,29,0.95) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(116,31,245,0.3);
+  padding: 16px 28px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 1000;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ─── Loading Overlay ─── */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,5,29,0.95);
+  backdrop-filter: blur(20px);
+  z-index: 200;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.loading-overlay.show { display: flex; }
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: #741ff5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Asset Thumbnails ─── */
+.asset-thumb {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s ease;
+}
+.asset-thumb:hover {
+  background: rgba(116,31,245,0.1);
+  border-color: rgba(116,31,245,0.4);
+  transform: translateY(-4px);
+}
+
+/* ─── Background Effects ─── */
+.bg-gradient-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-gradient-orbs .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.bg-gradient-orbs .orb-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(116, 31, 245, 0.15);
+  top: -100px;
+  left: -100px;
+}
+.bg-gradient-orbs .orb-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(227, 72, 255, 0.1);
+  top: 40%;
+  right: -100px;
+}
+.bg-gradient-orbs .orb-3 {
+  width: 400px;
+  height: 400px;
+  background: rgba(116, 31, 245, 0.1);
+  bottom: 0;
+  left: 30%;
+}

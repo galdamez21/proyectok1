@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K1 Video Pipeline</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'k1-dark': '#0F051D',
+            'k1-purple': '#741ff5',
+            'k1-purple-light': '#9d5ff8',
+            'k1-pink': '#e348ff',
+            'k1-border': 'rgba(255,255,255,0.08)',
+            'k1-border-light': 'rgba(255,255,255,0.15)',
+          },
+          fontFamily: {
+            'heading': ['Montserrat', 'sans-serif'],
+            'body': ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Gradient Orbs -->
+  <div class="bg-gradient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- HEADER -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <header class="glass sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      
+      <!-- Logo + Title -->
+      <div class="flex items-center gap-5">
+        <div class="logo-k1 w-12 h-12 text-lg">K1</div>
+        <div>
+          <h1 class="font-heading font-bold text-xl tracking-tight">K1 Video Pipeline</h1>
+          <p class="text-white/40 text-sm font-light">Generador de videos para Mini ATMs</p>
+        </div>
+      </div>
+      
+      <!-- Right side -->
+      <div class="flex items-center gap-5">
+        <div class="hidden md:flex items-center gap-3 text-sm text-white/50">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          <span>El Salvador</span>
+        </div>
+        <button onclick="generarVideo()" class="btn-primary font-heading font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 text-white">
+          <i class="fa-solid fa-bolt"></i>
+          GENERAR VIDEO
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="max-w-7xl mx-auto px-6 flex border-t border-white/5">
+      <button class="tab-btn active font-heading font-semibold text-sm tracking-wide px-6 py-4 flex items-center gap-2 text-white/70" data-tab="0">
+        <i class="fa-solid fa-pen-fancy text-xs"></i> CONTENIDO
+      </button>
+      <button class="tab-btn font-heading font-semibold text-sm tracking-wide px-6 py-4 flex items-center gap-2 text-white/50" data-tab="1">
+        <i class="fa-solid fa-images text-xs"></i> REFERENCIAS
+      </button>
+      <button class="tab-btn font-heading font-semibold text-sm tracking-wide px-6 py-4 flex items-center gap-2 text-white/50" data-tab="2">
+        <i class="fa-solid fa-globe text-xs"></i> LOCALIZACIÓN
+      </button>
+      <button class="tab-btn font-heading font-semibold text-sm tracking-wide px-6 py-4 flex items-center gap-2 text-white/50" data-tab="3">
+        <i class="fa-solid fa-film text-xs"></i> RENDER
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- MAIN CONTENT -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex gap-8 relative">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- LEFT PANEL -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div class="flex-1 min-w-0 space-y-6">
+
+      <!-- ══ TAB 0: CONTENIDO ══ -->
+      <div class="tab-panel space-y-6" id="tab-0">
+        
+        <!-- Theme selection -->
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-5 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-k1-purple/20 flex items-center justify-center text-k1-purple text-xs">01</span>
+            TEMA DEL VIDEO
+          </h3>
+          <select id="tema-select" class="w-full rounded-xl px-4 py-3.5 text-sm">
+            <option>Cómo funciona una transacción en Bitcoin</option>
+            <option>Por qué El Salvador adoptó Bitcoin como moneda legal</option>
+            <option>Cómo K1 Mini protege tu billetera digital</option>
+            <option>Beneficios de comprar Bitcoin en un Mini ATM K1</option>
+          </select>
+        </div>
+
+        <!-- Script section -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-white/30 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-k1-purple/20 flex items-center justify-center text-k1-purple text-xs">02</span>
+              GUION AUTOMÁTICO
+            </h3>
+            <div class="flex items-center gap-3">
+              <span class="text-xs text-white/40">IA activada</span>
+              <div class="toggle-track active" id="ai-toggle">
+                <div class="toggle-thumb"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- AI Banner -->
+          <div class="rounded-xl p-4 mb-5 flex items-center justify-between" style="background: linear-gradient(135deg, rgba(116,31,245,0.1) 0%, rgba(227,72,255,0.05) 100%); border: 1px solid rgba(116,31,245,0.2);">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-k1-purple/20 flex items-center justify-center">
+                <i class="fa-solid fa-wand-magic-sparkles text-k1-purple"></i>
+              </div>
+              <div>
+                <div class="font-heading font-semibold text-sm">Generación con IA</div>
+                <div class="text-white/40 text-xs">Guion generado y editable</div>
+              </div>
+            </div>
+            <button onclick="generarConIA()" class="btn-primary font-heading font-bold text-xs px-4 py-2.5 rounded-lg text-white flex items-center gap-2">
+              <i class="fa-solid fa-bolt"></i> GENERAR CON IA
+            </button>
+          </div>
+          
+          <textarea id="guion-textarea" rows="6" class="w-full rounded-xl px-4 py-3.5 text-sm leading-relaxed" placeholder="Escribe o genera tu guion aquí...">Hola, en este breve video te mostraremos cómo K1 Technology protege tus transacciones con Bitcoin. K1 garantiza que cada transacción esté segura gracias a su avanzado sistema de encriptación. Tus datos siempre están protegidos con la tecnología más moderna. Descubre cómo K1 hace que comprar Bitcoin sea fácil y seguro.</textarea>
+        </div>
+
+        <!-- Tone selection -->
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-5 flex items-center gap-2">
+            <i class="fa-solid fa-microphone text-k1-purple text-xs"></i>
+            TONO DEL VIDEO
+          </h3>
+          <div class="grid grid-cols-3 gap-3">
+            <button class="tono-btn active opt-btn rounded-xl px-4 py-3.5 text-sm font-medium flex items-center justify-center gap-2" data-tono="educativo">
+              <i class="fa-solid fa-graduation-cap text-k1-purple"></i> Educativo
+            </button>
+            <button class="tono-btn opt-btn rounded-xl px-4 py-3.5 text-sm font-medium text-white/60 flex items-center justify-center gap-2" data-tono="casual">
+              <i class="fa-solid fa-face-smile text-white/40"></i> Casual
+            </button>
+            <button class="tono-btn opt-btn rounded-xl px-4 py-3.5 text-sm font-medium text-white/60 flex items-center justify-center gap-2" data-tono="tecnico">
+              <i class="fa-solid fa-code text-white/40"></i> Técnico
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 1: REFERENCIAS VISUALES ══ -->
+      <div class="tab-panel hidden space-y-6" id="tab-1">
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-5 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-k1-purple/20 flex items-center justify-center text-k1-purple text-xs">03</span>
+            REFERENCIAS VISUALES & ASSETS
+          </h3>
+
+          <!-- Drop Zone -->
+          <div id="drop-zone" class="drop-zone rounded-2xl p-10 text-center cursor-pointer">
+            <div class="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(116,31,245,0.15) 0%, rgba(227,72,255,0.1) 100%);">
+              <i class="fa-solid fa-cloud-arrow-up text-k1-purple text-2xl"></i>
+            </div>
+            <h4 class="font-heading font-semibold text-lg mb-2">Arrastra imágenes, logos o estilos aquí</h4>
+            <p class="text-white/40 text-sm mb-5">PNG · JPG · SVG · MP4 · Hasta 50 MB por archivo</p>
+            <input type="file" id="file-input" class="hidden" multiple accept="image/*,video/*">
+            <button onclick="document.getElementById('file-input').click()" class="btn-secondary font-medium text-sm px-5 py-2.5 rounded-xl text-white/70">
+              <i class="fa-solid fa-plus mr-2"></i> Agregar archivos
+            </button>
+          </div>
+
+          <!-- Assets Grid -->
+          <div id="assets-grid" class="grid grid-cols-5 gap-3 mt-5">
+            <div class="asset-thumb aspect-square rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-brands fa-bitcoin text-k1-purple text-2xl"></i>
+              <span class="text-[10px] text-white/40 font-medium uppercase tracking-wider">K1 Logo</span>
+            </div>
+            <div class="asset-thumb aspect-square rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-layer-group text-k1-purple text-2xl"></i>
+              <span class="text-[10px] text-white/40 font-medium uppercase tracking-wider">BTC BG</span>
+            </div>
+            <div class="asset-thumb aspect-square rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-desktop text-k1-purple text-2xl"></i>
+              <span class="text-[10px] text-white/40 font-medium uppercase tracking-wider">ATM Mock</span>
+            </div>
+            <div class="asset-thumb aspect-square rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer">
+              <span class="text-2xl">🇸🇻</span>
+              <span class="text-[10px] text-white/40 font-medium uppercase tracking-wider">Flag SV</span>
+            </div>
+            <div id="add-asset-btn" class="asset-thumb aspect-square rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer opacity-40 hover:opacity-70" onclick="document.getElementById('file-input').click()">
+              <i class="fa-solid fa-plus text-white/40 text-xl"></i>
+              <span class="text-[10px] text-white/40 font-medium uppercase tracking-wider">Agregar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 2: LOCALIZACIÓN ══ -->
+      <div class="tab-panel hidden space-y-6" id="tab-2">
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-white/30 mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-globe text-k1-purple"></i>
+            LOCALIZACIÓN GLOBAL
+          </h3>
+
+          <!-- Base language -->
+          <div class="mb-6">
+            <label class="block text-sm text-white/50 mb-2 font-medium">Idioma base</label>
+            <select class="w-full rounded-xl px-4 py-3.5 text-sm">
+              <option>Español (El Salvador)</option>
+              <option>English (US)</option>
+            </select>
+          </div>
+
+          <!-- Languages -->
+          <div class="mb-6">
+            <label class="block text-sm text-white/50 mb-3 font-medium">Idiomas a generar</label>
+            <div class="flex flex-wrap gap-3">
+              <div class="chip active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium">
+                <span>🇪🇸</span> Español
+              </div>
+              <div class="chip active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium">
+                <span>🇬🇧</span> Inglés
+              </div>
+              <div class="chip flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white/60">
+                <span>🇯🇵</span> Japonés
+              </div>
+              <div class="chip flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white/60">
+                <span>🇵🇹</span> Portugués
+              </div>
+              <div class="chip flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white/60">
+                <span>🇫🇷</span> Francés
+              </div>
+              <div class="chip flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white/60">
+                <span>🇸🇦</span> Árabe
+              </div>
+            </div>
+          </div>
+
+          <!-- Regions -->
+          <div>
+            <label class="block text-sm text-white/50 mb-4 font-medium">Región (opcional)</label>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="region-card active rounded-xl px-4 py-4 text-center cursor-pointer">
+                <span class="text-2xl mb-2 block">🇸🇻</span>
+                <div class="text-sm font-medium">El Salvador</div>
+              </div>
+              <div class="region-card rounded-xl px-4 py-4 text-center cursor-pointer text-white/60">
+                <span class="text-2xl mb-2 block">🇯🇵</span>
+                <div class="text-sm font-medium">Japón</div>
+              </div>
+              <div class="region-card rounded-xl px-4 py-4 text-center cursor-pointer text-white/60">
+                <span class="text-2xl mb-2 block">🇳🇬</span>
+                <div class="text-sm font-medium">Nigeria</div>
+              </div>
+              <div class="region-card rounded-xl px-4 py-4 text-center cursor-pointer text-white/60">
+                <span class="text-2xl mb-2 block">🇺🇸</span>
+                <div class="text-sm font-medium">EE.UU.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 3: RENDER / OUTPUT ══ -->
+      <div class="tab-panel hidden space-y-6" id="tab-3">
+        <div class="glass-card rounded-2xl p-6 space-y-6">
+
+          <!-- Duration -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <label class="text-sm text-white/50 font-medium flex items-center gap-2">
+                <i class="fa-solid fa-clock text-k1-purple text-xs"></i> Duración del video
+              </label>
+              <span id="dur-value" class="gradient-text font-heading font-bold">20 seg</span>
+            </div>
+            <input type="range" id="dur-slider" min="15" max="30" value="20" class="w-full h-2 bg-white/5 rounded-full appearance-none cursor-pointer">
+            <div class="flex justify-between text-xs text-white/30 mt-2">
+              <span>15s</span><span>30s</span>
+            </div>
+          </div>
+
+          <!-- Format -->
+          <div>
+            <label class="block text-sm text-white/50 mb-3 font-medium flex items-center gap-2">
+              <i class="fa-solid fa-file-video text-k1-purple text-xs"></i> Formato
+            </label>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="opt-btn active text-center py-3 rounded-xl text-sm font-medium">MP4</div>
+              <div class="opt-btn text-center py-3 rounded-xl text-sm font-medium text-white/60">GIF</div>
+            </div>
+          </div>
+
+          <!-- Quality -->
+          <div>
+            <label class="block text-sm text-white/50 mb-3 font-medium flex items-center gap-2">
+              <i class="fa-solid fa-tower-broadcast text-k1-purple text-xs"></i> Calidad
+            </label>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="opt-btn active text-center py-3 rounded-xl text-sm font-medium">1080p</div>
+              <div class="opt-btn text-center py-3 rounded-xl text-sm font-medium text-white/60">720p</div>
+            </div>
+          </div>
+
+          <!-- Branding -->
+          <div class="border-t border-white/5 pt-5">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-medium flex items-center gap-2">
+                <i class="fa-solid fa-copyright text-k1-purple text-xs"></i> Branding K1
+              </span>
+              <div class="toggle-track active" id="branding-toggle-track" onclick="toggleBranding()">
+                <div class="toggle-thumb"></div>
+              </div>
+            </div>
+            <div id="branding-options" class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm text-white/50 mb-2">Posición</label>
+                <select class="w-full rounded-xl px-4 py-3 text-sm">
+                  <option>Abajo derecha</option>
+                  <option>Abajo izquierda</option>
+                  <option>Arriba centro</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm text-white/50 mb-2">Opacidad: <span id="op-val" class="gradient-text">100%</span></label>
+                <input type="range" id="op-slider" min="30" max="100" value="100" class="w-full h-2 bg-white/5 rounded-full appearance-none cursor-pointer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- RIGHT PANEL: PREVIEW -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div class="w-80 flex-shrink-0">
+      <div class="sticky top-32 space-y-5">
+        
+        <!-- Preview Label -->
+        <div class="flex items-center justify-between">
+          <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-white/30 flex items-center gap-2">
+            <i class="fa-solid fa-eye text-k1-purple text-xs"></i> VISTA PREVIA
+          </h3>
+          <span class="flex items-center gap-1.5 text-xs text-green-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> LIVE
+          </span>
+        </div>
+
+        <!-- ATM Mockup -->
+        <div class="atm-shell rounded-3xl p-4 float">
+          <!-- Screen -->
+          <div class="atm-screen rounded-2xl h-72 relative overflow-hidden flex flex-col items-center justify-center p-5 text-center">
+            <!-- Brand tag -->
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest px-3 py-1 rounded-full" style="background: rgba(116,31,245,0.2); border: 1px solid rgba(116,31,245,0.3); color: #e348ff;">
+              K1 · BITCOIN ATM
+            </div>
+            <!-- Logo -->
+            <div class="logo-k1 w-12 h-12 text-base mb-3 mt-2">K1</div>
+            <!-- Title -->
+            <h4 id="preview-titulo" class="font-heading font-bold text-sm leading-tight mb-2 px-2">Cómo funciona una transacción en Bitcoin</h4>
+            <!-- Script preview -->
+            <p id="preview-guion" class="text-xs text-white/50 leading-relaxed px-3">Tu firma digital autoriza el pago. La blockchain registra todo de forma permanente.</p>
+            <!-- Watermark -->
+            <div id="watermark-preview" class="absolute bottom-3 right-4 font-heading font-bold text-k1-purple/70 text-[10px]">K1 ©</div>
+            <!-- Progress bar -->
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/5">
+              <div class="h-full rounded-full" style="width: 60%; background: linear-gradient(90deg, #741ff5, #e348ff);"></div>
+            </div>
+          </div>
+          <!-- ATM Body -->
+          <div class="flex items-center justify-between py-3 px-2">
+            <div class="grid grid-cols-3 gap-1">
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">1</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">2</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">3</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">4</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">5</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">6</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">7</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">8</div>
+              <div class="w-6 h-6 bg-white/5 rounded flex items-center justify-center text-xs text-white/30">9</div>
+            </div>
+            <div class="text-center">
+              <div class="logo-k1 w-10 h-10 text-sm">K1</div>
+              <div class="text-white/20 text-[7px] tracking-widest mt-1">MINI ATM</div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <div class="w-8 h-1.5 bg-white/5 rounded"></div>
+              <div class="w-8 h-1.5 bg-white/5 rounded"></div>
+              <div class="w-8 h-1.5 bg-white/5 rounded"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specs Box -->
+        <div class="glass rounded-2xl p-4">
+          <div class="spec-row">
+            <span class="text-xs text-white/40">Resolución</span>
+            <span class="text-xs gradient-text font-mono font-medium">1080 × 1920</span>
+          </div>
+          <div class="spec-row">
+            <span class="text-xs text-white/40">Duración</span>
+            <span id="spec-dur" class="text-xs text-white font-mono">00:20</span>
+          </div>
+          <div class="spec-row">
+            <span class="text-xs text-white/40">Formato</span>
+            <span class="text-xs text-white font-mono">MP4 · 30fps</span>
+          </div>
+          <div class="spec-row">
+            <span class="text-xs text-white/40">Idiomas</span>
+            <span id="spec-idiomas" class="text-xs gradient-text font-mono font-medium">ES · EN</span>
+          </div>
+          <div class="spec-row">
+            <span class="text-xs text-white/40">Tamaño</span>
+            <span class="text-xs text-white font-mono">~8.4 MB × 2</span>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="flex items-center justify-center gap-2 py-2">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          <span class="text-xs text-white/40">Pipeline IA activo</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-3">
+          <button onclick="generarVideo()" class="btn-primary w-full font-heading font-bold py-4 rounded-xl flex items-center justify-center gap-2 text-white text-sm">
+            <i class="fa-solid fa-play"></i> GENERAR VIDEO
+          </button>
+          <button onclick="exportarLote()" class="btn-secondary w-full font-medium py-3 rounded-xl flex items-center justify-center gap-2 text-white/70 text-sm">
+            <i class="fa-solid fa-box-archive"></i> Exportar lote (8 idiomas)
+          </button>
+        </div>
+
+        <p class="text-center text-white/25 text-xs leading-relaxed">
+          Optimizado para Mini ATMs K1<br>
+          Soporta 12 idiomas simultáneamente
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- LOADING OVERLAY -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="logo-k1 w-16 h-16 text-2xl pulse-glow">K1</div>
+    <div class="font-heading font-bold text-xl">Generando video con IA...</div>
+    <div class="w-72 progress-bar">
+      <div id="loading-bar" class="progress-fill" style="width: 0%"></div>
+    </div>
+    <div class="space-y-3 text-left">
+      <div id="step-1" class="flex items-center gap-3 text-sm text-white/40">
+        <i class="fa-regular fa-circle w-4 h-4"></i> Procesando guion con IA...
+      </div>
+      <div id="step-2" class="flex items-center gap-3 text-sm text-white/40">
+        <i class="fa-regular fa-circle w-4 h-4"></i> Generando assets visuales...
+      </div>
+      <div id="step-3" class="flex items-center gap-3 text-sm text-white/40">
+        <i class="fa-regular fa-circle w-4 h-4"></i> Localizando a 2 idiomas...
+      </div>
+      <div id="step-4" class="flex items-center gap-3 text-sm text-white/40">
+        <i class="fa-regular fa-circle w-4 h-4"></i> Renderizando 1080p 9:16...
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TOAST -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-check text-green-400"></i>
+    <span id="toast-msg" class="text-sm font-medium"></span>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
